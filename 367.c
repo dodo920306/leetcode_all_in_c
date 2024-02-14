@@ -50,7 +50,7 @@ bool isPerfectSquare(int n)
     /* x = (1.(fraction of n))b * 2^(exponent of n). */
     float x = n;
     /**
-     * Translate the float into uint while not changing the content
+     * The fastest way to translate the float into uint while not changing the content
      * so that the following bitwise operations are available.
      */
     EXTRACT_WORDS(ix0, x);
