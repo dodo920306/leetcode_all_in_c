@@ -6,11 +6,11 @@ Any PR about the existing solutions is welcomed, while that for the nonexistent 
 
 ## Prerequisites
 
-* gcc
+* A C compiler
 
 ## Usage
 
-Use gcc on your computer to compile each solution and run it, simple as that.
+Use your C compiler on your computer to compile each solution and run it, simple as that.
 
 ## Content
 

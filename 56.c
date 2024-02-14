@@ -22,17 +22,12 @@ int **merge(int **intervals, int intervalsSize, int *intervalsColSize, int *retu
     qsort(intervals, intervalsSize, sizeof(int *), cmp);
 
     *res = *intervals;
-    for (int i = 1; i < intervalsSize; i++) {
-        if (res[top][1] > intervals[i][0]) {
-            if (intervals[i][1] > res[top][1])
-                /* The next interval starts later and ends later => merge. */
-                res[top][1] = intervals[i][1];
-            /* The next interval starts later and ends earlier => omit. */
-        }
-        else if (res[top][1] == intervals[i][0])
+    for (int i = 1, diff = 0, sign = ((sizeof(int) << 3) - 1); i < intervalsSize; i++) {
+        diff = (res[top][1] - intervals[i][0]);
+        if (!diff || ((!(diff >> sign)) && (intervals[i][1] > res[top][1])))
             /* The next interval must end later => merge. */
             res[top][1] = intervals[i][1];
-        else
+        else if (diff >> sign)
             /* No overlap => push. */
             res[++top] = intervals[i];
     }
