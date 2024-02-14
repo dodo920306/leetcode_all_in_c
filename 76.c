@@ -16,13 +16,14 @@ char* minWindow(char *s, char *t)
     for (int i = 0; i < n; i++)
         isInT[(t[i] - 'A')]++;
 
-    for (int head = 0, tail = 0; tail < m; tail++) {
+    for (int head = 0, tail = 0, diff = 0; tail < m; tail++) {
         if (isInT[(s[tail] - 'A')]-- > 0)   n--;
         while (!n) {
             /* All letters in t are in s[head:tail], so s[head:tail] is currently a valid substring. */
-            if (res_length > (tail - head + 1)) {
+            diff = (tail - head + 1);
+            if (res_length > diff) {
                 /* d(head, tail) < strlen(the original substring), so a new shorter valid substring shows up. */
-                res_length = (tail - head + 1);
+                res_length = diff;
                 from = head;
             }
             /* try moving head. add it back. */
