@@ -3,9 +3,9 @@
 #include <string.h>
 #include <math.h>
 
-int* sequentialDigits(int low, int high, int* returnSize);
+int *sequentialDigits(int low, int high, int *returnSize);
 
-int* sequentialDigits(int low, int high, int* returnSize)
+int *sequentialDigits(int low, int high, int *returnSize)
 {
     char *s = "123456789", *digits;
     int log_low = (int)log10((double)low), log_high = (int)log10((double)high), *res = (int *)malloc(36 * sizeof(int));
