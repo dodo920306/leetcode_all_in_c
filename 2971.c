@@ -40,5 +40,7 @@ long long largestPerimeter(int *nums, int numsSize)
 
 int main()
 {
+    int nums[] = {1, 12, 1, 2, 5, 50, 3};
+    printf("%d", largestPerimeter(nums, 7));
     return 0;
 }
