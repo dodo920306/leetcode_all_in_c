@@ -1,21 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int cmp(const void *a, const void *b)
+void copy(int *a, int *b, int size)
 {
-    return (*(int *)a) - (*(int *)b);
+    while (size--)    *a++ = *b++;
 }
 
-/**
- * The current solution still bounded by qsort(), which is O(n^2).
- * A O(nlogn) solution will be appreciated.
- */
+/* merge sort is used here to reduce time since qsort() takes O(n^2). */
+void merge(int *arr, int left, int right)
+{
+    if (left == right)  return;
+
+    int m = (right + left) / 2, l = 0, r = 0, lsize = m - left + 1, rsize = right - m, r1[lsize], r2[rsize];
+
+    merge(arr, left, m);
+    m++;
+    merge(arr, m, right);
+
+    copy(r1, arr + left, (lsize));
+    copy(r2, arr + m, (rsize));
+
+    /* merge 2 sorted array */
+    while (l < lsize && r < rsize)  arr[left++] = r1[l] < r2[r] ? r1[l++] : r2[r++];
+    arr += left;
+    /* One of (lsize - l) and (rsize - r) is 0, so the sum of them is the number of rest elements. */
+    lsize -= l;
+    rsize -= r;
+    copy(arr, (lsize ? r1 + l : r2 + r), lsize + rsize);
+}
+
 int findLeastNumOfUniqueInts(int *arr, int arrSize, int k)
 {
     int uni = 0, i = 0, sign = ((sizeof(int) << 3) - 1);
 
     /* sort arr to gather same elements. */
-    qsort(arr, arrSize, sizeof(int), cmp);
+    merge(arr, 0, arrSize - 1);
     for (int key; i < arrSize; uni++) {
         key = arr[i];
         /* We use the original array to store frequencies to save space. */
@@ -25,7 +44,7 @@ int findLeastNumOfUniqueInts(int *arr, int arrSize, int k)
     }
 
     /* sort by frequency. */
-    qsort(arr, uni, sizeof(int), cmp);
+    merge(arr, 0, uni - 1);
     for (i = 0; k > 0; i++)
         /* count how many more elements need to be deleted to achieve k removals */
         k -= arr[i];
