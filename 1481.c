@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 void copy(int *a, int *b, int size)
 {
     while (size--)    *a++ = *b++;
 }
 
-/* merge sort is used here to reduce time since qsort() takes O(n^2). */
+/* mergesort is used here to reduce time since qsort() takes O(n^2). */
 void merge(int *arr, int left, int right)
 {
     if (left == right)  return;
