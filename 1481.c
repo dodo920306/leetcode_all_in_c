@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+void copy(int *a, int *b, int size);
+void merge(int *arr, int left, int right);
+int findLeastNumOfUniqueInts(int *arr, int arrSize, int k);
+
 void copy(int *a, int *b, int size)
 {
     while (size--)    *a++ = *b++;
