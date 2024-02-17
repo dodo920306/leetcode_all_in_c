@@ -11,6 +11,7 @@ int cmp(const void *a, const void *b)
 
 int furthestBuilding(int *heights, int heightsSize, int bricks, int ladders)
 {
+    if (heightsSize <= ladders) return heightsSize - 1;
     int res = 0, *max = (int *)calloc(ladders + 1, sizeof(int)), length = ladders, sign = ((sizeof(int) << 3) - 1);
     if (!max) {
         perror("Error");
@@ -29,26 +30,29 @@ int furthestBuilding(int *heights, int heightsSize, int bricks, int ladders)
             }
             else {
                 /* First entrance: ladders == -1 and max isn't sorted. */
-                if (!(~ladders))    qsort(max, length, sizeof(int), cmp);
+                if (!(~ladders) && length > 1)    qsort(max, length, sizeof(int), cmp);
+                /**
+                 * Since there is no ladders, we replace the shortest ladder with bricks if 
+                 * it's shorter than the current diff.
+                 * Otherwise, we just use bricks to cross the current diff.
+                 */
                 bricks -= diff > *max ? *max : diff;
                 /* no bricks left */
                 if (bricks >> sign) break;
-                else   res++;
+                else    res++;
 
-                /* update max while maintaining it as sorted */
-                if (diff > *max) {
-                    for (int j = 0; j < length; j++) {
+                /* update max if it has been changed while maintaining it as sorted */
+                if (diff > *max)
+                    for (int j = 0; j < length; j++)
                         if (max[j + 1] > diff) {
                             max[j] = diff;
                             break;
                         }
-                        else
-                            max[j] = max[j + 1];
-                    }
-                }
+                        else    max[j] = max[j + 1];
             }
         }
     }
+    free(max);
     return res;
 }
 
