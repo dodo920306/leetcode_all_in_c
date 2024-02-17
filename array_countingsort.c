@@ -4,6 +4,7 @@
 /* This can only be used when the range of the values of the elements is small. */
 void countingsort(int *nums, int numsSize)
 {
+    if (!numsSize)  return;
     int min = INT_MAX, max = INT_MIN;
     for (int i = 0; i < numsSize; i++) {
         if (nums[i] > max)  max = nums[i];

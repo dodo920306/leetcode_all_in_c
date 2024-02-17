@@ -8,10 +8,13 @@ struct hashnode {
     struct hashnode *next, *prev;
 };
 
+int *twoSum(int *nums, int numsSize, int target, int *returnSize);
+
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+int *twoSum(int *nums, int numsSize, int target, int *returnSize)
+{
     int *res = (int *)calloc(2, sizeof(int));
     if (!res) {
         perror("Error");
