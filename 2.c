@@ -94,15 +94,13 @@ int main()
         printf("%d ", res->val);
         res = res->next;
     }
-    /**
-     * No matter what we do to l1 and l2 in the function, 
-     * the values they have here won't change, so we can free them.
-     */
+
     while (l1) {
         iter = l1->next;
         free(l1);
         l1 = iter;
     }
+
     while (l2) {
         iter = l2->next;
         free(l2);

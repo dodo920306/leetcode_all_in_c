@@ -18,6 +18,7 @@ void heapify(struct heap *h, int index);
 struct pair peek(struct heap *h);
 struct pair extractMin(struct heap *h);
 void insert(struct heap *h, long key, int value);
+void freeHeap(struct heap *h);
 int mostBooked(int n, int **meetings, int meetingsSize, int *meetingsColSize);
 
 struct heap *createHeap(int capacity)
@@ -121,6 +122,12 @@ void insert(struct heap *h, long key, int value)
 	}
 }
 
+void freeHeap(struct heap *h)
+{
+	free(h->arr);
+	free(h);
+}
+
 int cmp(const void *a, const void *b)
 {
     return **(int **)a - **(int **)b;
@@ -133,31 +140,29 @@ int mostBooked(int n, int **meetings, int meetingsSize, int *meetingsColSize)
         perror("Error");
         return -1;
     }
-    struct heap *idle = createHeap(n), *endtime = createHeap(n);
+    struct heap *idle = createHeap(n), *busy = createHeap(n);
     for (int i = 0; i < n; i++) insert(idle, i, 0);
     qsort(meetings, meetingsSize, sizeof(meetings[0]), cmp);
 
     for (int i = 0, room; i < meetingsSize; i++) {
-        while (endtime->size && peek(endtime).key <= meetings[i][0])
-            insert(idle, extractMin(endtime).value, 0);
+        while (busy->size && peek(busy).key <= meetings[i][0])
+            insert(idle, extractMin(busy).value, 0);
         if (idle->size) {
             room = extractMin(idle).key;
             rooms[room]++;
-            insert(endtime, meetings[i][1], room);
+            insert(busy, meetings[i][1], room);
         }
         else {
-            room = peek(endtime).value;
+            room = peek(busy).value;
             rooms[room]++;
-            insert(endtime, extractMin(endtime).key + meetings[i][1] - meetings[i][0], room);
+            insert(busy, extractMin(busy).key + meetings[i][1] - meetings[i][0], room);
         }
     }
     for (int i = 0; i < n; i++)
         if (rooms[res] < rooms[i]) res = i;
     free(rooms);
-    free(idle->arr);
-    free(idle);
-    free(endtime->arr);
-    free(endtime);
+    freeHeap(idle);
+    freeHeap(busy);
     return res;
 }
 

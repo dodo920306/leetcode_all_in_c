@@ -18,6 +18,7 @@ struct pair peek(struct heap *h);
 struct pair extractMin(struct heap *h);
 void insert(struct heap *h, int key, int value);
 void printHeap(struct heap *h);
+void freeHeap(struct heap *h);
 
 struct heap *createHeap(int capacity)
 {
@@ -127,6 +128,12 @@ void printHeap(struct heap *h)
 	printf("\n");
 }
 
+void freeHeap(struct heap *h)
+{
+	free(h->arr);
+	free(h);
+}
+
 int main()
 {
 	int arr[9] = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
@@ -134,12 +141,9 @@ int main()
     for (int i = 0; i < 9; i++)
         insert(hp, arr[i], 0);
 
-    for (int i = 0; i < 9; i++) {
-        printHeap(hp);
-	    extractMin(hp);
-	}
+    for (int i = 0; i < 9; i++)
+	    printf("%d ", extractMin(hp).key);
 
-	free(hp->arr);
-	free(hp);
+	freeHeap(hp);
 	return 0;
 }
