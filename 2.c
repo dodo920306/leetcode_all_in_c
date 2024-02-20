@@ -43,7 +43,15 @@ struct ListNode *addTwoNumbers(struct ListNode *l1, struct ListNode *l2)
         l1->val %= 10;
     }
 
-    /* l2 must haven't been used */ 
+    /**
+     * l2 must haven't been used.
+     * 
+     * original l1 -> o -- o -- o
+     *                           \
+     *                            \
+     * original l2 -> o -- o -- *  - o -- o
+     *                           ↖_______/
+     * */ 
     if (carry) {
         l1->next = l2;
         l1 = l1->next;
@@ -95,16 +103,30 @@ int main()
         res = res->next;
     }
 
-    while (l1) {
+    /**
+     * l1 and l2 here outside the function will 
+     * still point to the original position (the heads of the lists).
+     * Thus, lists can still be released following them.
+     * l1 -> o -- o -- o
+     *                  \
+     *                   \
+     * l2 -> o -- o -- *  - o -- o
+     *                  ↖_______/
+     */
+    while (l1->next) {
         iter = l1->next;
         free(l1);
         l1 = iter;
     }
 
-    while (l2) {
+    while (l2->next) {
         iter = l2->next;
         free(l2);
         l2 = iter;
     }
+
+    free(l1);
+    /* Avoid doubly-free. */
+    if (l1 != l2)   free(l2);
     return 0;
 }
