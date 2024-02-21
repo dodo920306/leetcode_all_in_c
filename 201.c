@@ -34,6 +34,7 @@ int rangeBitwiseAnd(int left, int right)
      */
     int suffix_length = 0;
     while (left != right) {
+        if (!left)  return 0; /* No way a common prefix will be found. */
         left >>= 1;
         right >>= 1;
         suffix_length++;
