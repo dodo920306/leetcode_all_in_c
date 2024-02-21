@@ -46,12 +46,9 @@ void insertHelper(struct heap *h, int index)
 	int parent = (index - 1) / 2;
 
 	if (h->arr[parent].key > h->arr[index].key || (h->arr[parent].key == h->arr[index].key && h->arr[parent].value > h->arr[index].value)) {
-		temp.key = h->arr[parent].key;
-        temp.value = h->arr[parent].value;
-		h->arr[parent].key = h->arr[index].key;
-        h->arr[parent].value = h->arr[index].value;
-		h->arr[index].key = temp.key;
-        h->arr[index].value = temp.value;
+		temp = h->arr[parent];
+		h->arr[parent] = h->arr[index];
+		h->arr[index] = temp;
 		insertHelper(h, parent);
 	}
 }
@@ -73,12 +70,9 @@ void heapify(struct heap *h, int index)
         min = right;
 
 	if (min != index) {
-		temp.key = h->arr[min].key;
-		temp.value = h->arr[min].value;
-		h->arr[min].key = h->arr[index].key;
-		h->arr[min].value = h->arr[index].value;
-		h->arr[index].key = temp.key;
-        h->arr[index].value = temp.value;
+		temp = h->arr[min];
+		h->arr[min] = h->arr[index];
+		h->arr[index] = temp;
 
 		heapify(h, min);
 	}
@@ -97,8 +91,7 @@ struct pair extractMin(struct heap *h)
 	if (h->size) {
 		deleteItem = h->arr[0];
 
-		h->arr[0].key = h->arr[h->size - 1].key;
-		h->arr[0].value = h->arr[h->size - 1].value;
+		h->arr[0] = h->arr[h->size - 1];
 		h->size--;
 
 		heapify(h, 0);

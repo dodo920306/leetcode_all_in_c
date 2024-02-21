@@ -107,11 +107,24 @@ int main()
      * l1 and l2 here outside the function will 
      * still point to the original position (the heads of the lists).
      * Thus, lists can still be released following them.
+     * 
+     * The 2 lists can now be presented as one of the 3 circumstances.
+     * 
      * l1 -> o -- o -- o
      *                  \
      *                   \
      * l2 -> o -- o -- *  - o -- o
      *                  ↖_______/
+     * 
+     * l1 -> o -- o -- o -- o -- o
+     * 
+     * l2 -> o -- o -- o
+     * 
+     * l1 -> o -- o -- o
+     * 
+     * l2 -> o -- o -- o
+     * 
+     * All these 3 are acceptable.
      */
     while (l1->next) {
         iter = l1->next;

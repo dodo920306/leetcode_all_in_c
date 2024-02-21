@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-int missingNumber(int* nums, int numsSize)
+int missingNumber(int *nums, int numsSize)
 {
-    int exist = 0;
-    for (int i = 1; i <= numsSize; i++)  exist ^= i;
-    for (int i = 0; i < numsSize; i++)  exist ^= nums[i];
-    return exist;
+    int res = 0;
+    for (int i = 1; i <= numsSize; i++)  res ^= i;
+    for (int i = 0; i < numsSize; i++)  res ^= nums[i];
+    return res;
 }
 
 int main()

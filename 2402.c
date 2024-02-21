@@ -47,12 +47,9 @@ void insertHelper(struct heap *h, int index)
 	int parent = (index - 1) / 2;
 
 	if (h->arr[parent].key > h->arr[index].key || (h->arr[parent].key == h->arr[index].key && h->arr[parent].value > h->arr[index].value)) {
-		temp.key = h->arr[parent].key;
-        temp.value = h->arr[parent].value;
-		h->arr[parent].key = h->arr[index].key;
-        h->arr[parent].value = h->arr[index].value;
-		h->arr[index].key = temp.key;
-        h->arr[index].value = temp.value;
+		temp = h->arr[parent];
+		h->arr[parent] = h->arr[index];
+		h->arr[index] = temp;
 		insertHelper(h, parent);
 	}
 }
@@ -74,12 +71,9 @@ void heapify(struct heap *h, int index)
         min = right;
 
 	if (min != index) {
-		temp.key = h->arr[min].key;
-		temp.value = h->arr[min].value;
-		h->arr[min].key = h->arr[index].key;
-		h->arr[min].value = h->arr[index].value;
-		h->arr[index].key = temp.key;
-        h->arr[index].value = temp.value;
+		temp = h->arr[min];
+		h->arr[min] = h->arr[index];
+		h->arr[index] = temp;
 
 		heapify(h, min);
 	}
@@ -98,8 +92,7 @@ struct pair extractMin(struct heap *h)
 	if (h->size) {
 		deleteItem = h->arr[0];
 
-		h->arr[0].key = h->arr[h->size - 1].key;
-		h->arr[0].value = h->arr[h->size - 1].value;
+		h->arr[0] = h->arr[h->size - 1];
 		h->size--;
 
 		heapify(h, 0);
@@ -128,39 +121,38 @@ void freeHeap(struct heap *h)
 	free(h);
 }
 
-int cmp(const void *a, const void *b)
-{
-    return **(int **)a - **(int **)b;
-}
-
 int mostBooked(int n, int **meetings, int meetingsSize, int *meetingsColSize)
 {
+    struct heap *sort, *idle, *busy;
+    struct pair meeting;
     int *rooms = (int *)calloc(n, sizeof(int)), res = 0;
     if (!rooms) {
         perror("Error");
         return -1;
     }
-    struct heap *idle = createHeap(n), *busy = createHeap(n);
+    sort = createHeap(meetingsSize);
+    for (int i = 0; i < meetingsSize; i++) insert(sort, meetings[i][0], meetings[i][1]);
+    idle = createHeap(n);
     for (int i = 0; i < n; i++) insert(idle, i, 0);
-    qsort(meetings, meetingsSize, sizeof(meetings[0]), cmp);
-
+    busy = createHeap(n);
     for (int i = 0, room; i < meetingsSize; i++) {
-        while (busy->size && peek(busy).key <= meetings[i][0])
+        meeting = extractMin(sort);
+        while (busy->size && peek(busy).key <= meeting.key)
             insert(idle, extractMin(busy).value, 0);
         if (idle->size) {
             room = extractMin(idle).key;
             rooms[room]++;
-            insert(busy, meetings[i][1], room);
+            insert(busy, meeting.value, room);
         }
         else {
             room = peek(busy).value;
             rooms[room]++;
-            insert(busy, extractMin(busy).key + meetings[i][1] - meetings[i][0], room);
+            insert(busy, extractMin(busy).key + meeting.value - meeting.key, room);
         }
     }
-    for (int i = 0; i < n; i++)
-        if (rooms[res] < rooms[i]) res = i;
+    for (int i = 0; i < n; i++) if (rooms[res] < rooms[i]) res = i;
     free(rooms);
+    freeHeap(sort);
     freeHeap(idle);
     freeHeap(busy);
     return res;
