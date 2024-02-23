@@ -5,30 +5,23 @@ int findJudge(int n, int **trust, int trustSize, int *trustColSize);
 
 int findJudge(int n, int **trust, int trustSize, int *trustColSize)
 {
-    int **count = (int **)malloc(2 * sizeof(int *)), res = -1;
+    int *count = (int *)calloc(n + 1, sizeof(int)), res = -1;
     if (!count) {
-        perror("Error");
-        return res;
-    }
-    count[0] = (int *)calloc(n, sizeof(int));
-    count[1] = (int *)calloc(n, sizeof(int));
-    if (!count[0] || !count[1]) {
         perror("Error");
         return res;
     }
 
     for (int i = 0; i < trustSize; i++) {
-        count[0][trust[i][0] - 1]++;
-        count[1][trust[i][1] - 1]++;
+        count[trust[i][0]]--;
+        count[trust[i][1]]++;
     }
-    for (int i = 0; i < n; i++)
-        if (!count[0][i] && count[1][i] == n - 1) {
-            res = i + 1;
+
+    for (int i = 1; i <= n; i++)
+        if (count[i] == n - 1) {
+            res = i;
             break;
         }
 
-    free(count[0]);
-    free(count[1]);
     free(count);
     return res;
 }
