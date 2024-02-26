@@ -154,5 +154,7 @@ bool canTraverseAllPairs(int *nums, int numsSize)
 
 int main()
 {
+    int nums[] = {4, 3, 12, 8};
+    printf("%s", canTraverseAllPairs(nums, 4) ? "true" : "false");
     return 0;
 }
