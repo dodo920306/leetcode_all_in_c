@@ -18,12 +18,22 @@ bool canTraverseAllPairs(int *nums, int numsSize);
 
 struct dsu *init(int n)
 {
-    struct dsu *res = (struct dsu *)malloc(sizeof(struct dsu));
-    res->dsu = (int *)malloc(n * sizeof(int));
-    res->size = (int *)malloc(n * sizeof(int));
+    struct dsu *self = (struct dsu *)malloc(sizeof(struct dsu));
+    if (!self) {
+        perror("Error");
+        return NULL;
+    }
+
+    self->dsu = (int *)malloc(n * sizeof(int));
+    self->size = (int *)malloc(n * sizeof(int));
+    if ((!(self->dsu)) || (!(self->size))) {
+        perror("Error");
+        return NULL;
+    }
+
     /* make each node point itself */
-    for (int i = 0; i < n; res->size[i++] = 1)  res->dsu[i] = i;
-    return res;
+    for (int i = 0; i < n; self->size[i++] = 1)  self->dsu[i] = i;
+    return self;
 }
 
 void _free(struct dsu *self)
