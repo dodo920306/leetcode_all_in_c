@@ -20,8 +20,7 @@ int findBottomLeftValue(struct TreeNode *root)
      * Use different stacks so that we can focus on the current level
      * while recording the next level.
      */
-    struct TreeNode *stack1[MAXIMUM_NUMBER_OF_NODE_PER_LEVEL], *stack2[MAXIMUM_NUMBER_OF_NODE_PER_LEVEL];
-    struct TreeNode* top;
+    struct TreeNode *stack1[MAXIMUM_NUMBER_OF_NODE_PER_LEVEL], *stack2[MAXIMUM_NUMBER_OF_NODE_PER_LEVEL], *top;
     int size1 = 1, size2 = 0;
     /**
      * Consider a tree like
