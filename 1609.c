@@ -25,7 +25,7 @@ bool isEvenOddTree(struct TreeNode *root)
      * The value of the minimum node is set as 0 to prevent overflow by subtractions.
      */
     struct TreeNode min_node = {.val = 0, .left = NULL, .right = NULL}, max_node = {.val = INT_MAX, .left = NULL, .right = NULL}, *stack1[MAXIMUM_NUMBER_OF_NODE_PER_LEVEL], *stack2[MAXIMUM_NUMBER_OF_NODE_PER_LEVEL], *top;
-    int size1 = 1, size2 = 0, level = 0, sign = (sizeof(int) << 3) - 1;
+    int size1 = 1, size2 = 0, level = 0, sign = (sizeof(int) * CHAR_BIT) - 1;
 
     *stack1 = root;
     while (size1) {

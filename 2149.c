@@ -13,7 +13,7 @@ int* rearrangeArray(int* nums, int numsSize, int* returnSize)
     }
 
     for (int i = 0, *pos = &res[0], *neg = &res[1], **indir; i < numsSize; i++) {
-        indir = (nums[i] >> ((sizeof(int) << 3) - 1)) ? &neg : &pos;
+        indir = (nums[i] >> ((sizeof(int) * CHAR_BIT) - 1)) ? &neg : &pos;
         **indir = nums[i];
         (*indir) += 2;
     }

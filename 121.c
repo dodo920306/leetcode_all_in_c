@@ -6,7 +6,7 @@ int maxProfit(int* prices, int pricesSize);
 int maxProfit(int* prices, int pricesSize)
 {
     int ans = 0;
-    for (int i = 1, index_of_the_cheapest = 0, diff = 0, sign = ((sizeof(int) << 3) - 1); i < pricesSize; i++) {
+    for (int i = 1, index_of_the_cheapest = 0, diff = 0, sign = ((sizeof(int) * CHAR_BIT) - 1); i < pricesSize; i++) {
         diff = prices[i] - prices[index_of_the_cheapest];
         if (diff >> sign)
             index_of_the_cheapest = i;

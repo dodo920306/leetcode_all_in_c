@@ -34,7 +34,7 @@ void merge(int *arr, int left, int right)
 
 int findLeastNumOfUniqueInts(int *arr, int arrSize, int k)
 {
-    int uni = 0, i = 0, sign = ((sizeof(int) << 3) - 1);
+    int uni = 0, i = 0, sign = ((sizeof(int) * CHAR_BIT) - 1);
 
     /* sort arr to gather same elements. */
     merge(arr, 0, arrSize - 1);

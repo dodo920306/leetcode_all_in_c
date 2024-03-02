@@ -7,7 +7,7 @@ double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2, int nums2Si
 
 double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2, int nums2Size)
 {
-    int *temp_ptr, temp, left = 0, right, total = nums1Size + nums2Size, half = total >> 1, i, j, left_A, right_A, left_B, right_B, sign = ((sizeof(int) << 3) - 1);
+    int *temp_ptr, temp, left = 0, right, total = nums1Size + nums2Size, half = total >> 1, i, j, left_A, right_A, left_B, right_B, sign = ((sizeof(int) * CHAR_BIT) - 1);
     if (nums2Size < nums1Size) {
         /* We want to make sure that nums1 is the shorter one, so we swap them if not. */
         temp_ptr = nums1;

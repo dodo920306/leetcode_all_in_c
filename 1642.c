@@ -12,7 +12,7 @@ int cmp(const void *a, const void *b)
 int furthestBuilding(int *heights, int heightsSize, int bricks, int ladders)
 {
     if (heightsSize <= ladders) return heightsSize - 1;
-    int res = 0, *max = (int *)calloc(ladders + 1, sizeof(int)), length = ladders, sign = ((sizeof(int) << 3) - 1);
+    int res = 0, *max = (int *)calloc(ladders + 1, sizeof(int)), length = ladders, sign = ((sizeof(int) * CHAR_BIT) - 1);
     if (!max) {
         perror("Error");
         return -1;
