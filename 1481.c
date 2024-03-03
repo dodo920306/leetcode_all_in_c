@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 void copy(int *a, int *b, int size);
 void merge(int *arr, int left, int right);
