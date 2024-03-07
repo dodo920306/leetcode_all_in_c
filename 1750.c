@@ -19,6 +19,7 @@ int minimumLength(char *s)
             while (i <= j && s[i] == t)   i++;
             while (i <= j && s[j] == t)   j--;
         }
+        /* no more prefix and suffix can be obtained */
         else    break;
     }
     return j - i + 1;
