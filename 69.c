@@ -73,7 +73,7 @@ int mySqrt(int n)
         for (; !(ix0 & MASK_OF_THE_MSB_OF_FRACTION); m--)
             ix0 <<= 1;
     /**
-     * Here, the true exponent of the normalized m is gotten.
+     * Here, the true exponent of the normalized m is obtained.
      * e.g. m = 0 => m = -127. so m = (1. ...)b * 2^(-127) (denormal).
      * e.g. m = 1 => m = -126. so m = (1. ...)b * 2^(-126) (norma).
      */

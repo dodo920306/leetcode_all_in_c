@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/* This number is gotten through experiments */
+/* This number was obtained through experiments */
 #define HASH_SIZE 48510
 
 struct ListNode {

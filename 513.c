@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/* This number is gotten through experiments. */
+/* This number was obtained through experiments. */
 #define MAXIMUM_NUMBER_OF_NODE_PER_LEVEL 1000
 
 struct TreeNode {

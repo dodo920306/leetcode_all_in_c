@@ -111,7 +111,7 @@ char ***groupAnagrams(char **strs, int strsSize, int *returnSize, int **returnCo
             /* Iterate */
             a = b;
         }
-        /* Now the sorted indices and the number of groups are gotten, the only thing left is grouping. */
+        /* Now the sorted indices and the number of groups are obtained, the only thing left is grouping. */
         *returnColumnSizes = (int *)malloc((*returnSize) * sizeof(int *));
         for (int i = 1, h = 0; i < strsSize; i++) {
             if (strncmp(qstrs[h], qstrs[i], strlen(qstrs[h]))) {

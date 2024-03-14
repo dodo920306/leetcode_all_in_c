@@ -30,7 +30,7 @@ int numSquares(int n)
         dp[i] = i;
         for (int j = 1; j * j <= i; j++)
             /**
-                * A better answer could be gotten by taking j * j in the sum
+                * A better answer could be obtained by taking j * j in the sum
                 * while considering what's the least number of perfect square numbers that sum to the rest of the sum,
                 * which is i - j * j. 
                 */

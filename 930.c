@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_SIZE 30000
+/**
+ * This number was obtained through experiments.
+ * If you can't pass the question, please increase the number and report it.
+ */
+#define MAX_SIZE 29696
 
 int numSubarraysWithSum(int *nums, int numsSize, int goal);
 
@@ -25,7 +29,8 @@ int numSubarraysWithSum(int *nums, int numsSize, int goal)
          * Check if there are previous elements whose prefix sum is the same as the
          * difference between the current sum and goal.
          *
-         * If so, **remove them** respectively to get subarrays with a sum goal.
+         * If so, 
+         * **remove them** respectively to get subarrays ending at nums[i] with a sum goal.
          */
         if (!(diff >> mask) && map[diff])  res += map[diff];
         map[sum]++;

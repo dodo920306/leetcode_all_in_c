@@ -6,7 +6,7 @@ char *intToRoman(int num);
 
 char *intToRoman(int num)
 {
-    /* This number is gotten through experiments. */
+    /* This number was obtained through experiments. */
     char *res = (char *)calloc(16, sizeof(char)), *romans[4][10];
     int radix = 0, n = num, significant = 1;
     if (!res) {
