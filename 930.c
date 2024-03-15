@@ -3,7 +3,8 @@
 
 /**
  * This number was obtained through experiments.
- * If you can't pass the question, please increase the number and report it.
+ * If you can't pass the question, it means LeetCode has updated their test inputs, 
+ * so please increase the number and report it.
  */
 #define MAX_SIZE 29696
 

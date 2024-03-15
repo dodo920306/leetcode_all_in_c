@@ -2,7 +2,11 @@
 #include <limits.h>
 #include <stdbool.h>
 
-/* This number was obtained through experiments. */
+/**
+ * This number was obtained through experiments.
+ * If you can't pass the question, it means LeetCode has updated their test inputs, 
+ * so please increase the number and report it.
+ */
 #define MAXIMUM_NUMBER_OF_NODE_PER_LEVEL 4904
 
 struct TreeNode {

@@ -1,19 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int pivotInteger(int n);
 
 int pivotInteger(int n)
 {
-    int prefix_sum[n + 1];
-    *prefix_sum = 0;
-    for (int i = 1, sum = 0; i <= n; i++) {
+    int *prefix_sum = (int *)malloc((n + 1) * sizeof(int)), i = 0;
+    if (!prefix_sum) {
+        perror("Error");
+        return INT_MIN;
+    }
+    for (int sum = 0; i <= n; i++) {
         sum += i;
         prefix_sum[i] = sum;
     }
 
-    for (int i = 1; i <= n; i++)
-        if (prefix_sum[i] == prefix_sum[n] - prefix_sum[i - 1]) return i;
-    return -1;
+    for (i = 1; i <= n; i++)
+        if (prefix_sum[i] == prefix_sum[n] - prefix_sum[i - 1]) break;
+    
+    free(prefix_sum);
+    return i > n ? -1 : i;
 }
 
 int main()

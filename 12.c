@@ -6,7 +6,11 @@ char *intToRoman(int num);
 
 char *intToRoman(int num)
 {
-    /* This number was obtained through experiments. */
+    /**
+     * This number was obtained through experiments.
+     * If you can't pass the question, it means LeetCode has updated their test inputs, 
+     * so please increase the number and report it.
+     */
     char *res = (char *)calloc(16, sizeof(char)), *romans[4][10];
     int radix = 0, n = num, significant = 1;
     if (!res) {
