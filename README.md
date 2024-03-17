@@ -12,6 +12,14 @@ Any PR about the existing solutions is welcomed, while that for the nonexistent 
 
 Use your C compiler on your computer to compile each solution and run it, simple as that.
 
+If you're using `gcc`, you can simply test every question with
+
+```bash
+$ chmod +x test.sh
+$ ./test.sh ${question_number}
+```
+.
+
 ## Content
 
 In every solution provided here, there must be a main function in it to provide an example input to the solution function.
