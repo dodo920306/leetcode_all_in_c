@@ -42,11 +42,14 @@ int *newInterval, int newIntervalSize, int *returnSize, int **returnColumnSizes)
             newInterval[1] = intervals[i][1] < newInterval[1] ? newInterval[1] : intervals[i][1];
         }
         else if (intervals[i][0] < newInterval[0])
+            /* No overlap */
             insertAPairAtTheEnd(res, returnSize, intervals[i], *returnColumnSizes);
-        else    break;
+        else    break;  /* No overlap, but behind the new interval, so we insert the new interval first. */
     }
+    /* insert the new interval */
     insertAPairAtTheEnd(res, returnSize, newInterval, *returnColumnSizes);
     while (i < intervalsSize)
+        /* add remain intervals that don't overlap with the new interval */
         insertAPairAtTheEnd(res, returnSize, intervals[i++], *returnColumnSizes);
 
     return res;
@@ -59,9 +62,8 @@ int main()
     newInterval[] = {4, 8}, returnSize, *returnColumnSizes, 
     **res = insert(intervals, 5, intervalsColSize, newInterval, 2, &returnSize, &returnColumnSizes);
     for (int i = 0; i < returnSize; i++) {
-        for (int j = 0; j < returnColumnSizes[i]; j++) {
+        for (int j = 0; j < returnColumnSizes[i]; j++)
             printf("%d ", res[i][j]);
-        }
         printf("\n");
     }
     free(returnColumnSizes);
