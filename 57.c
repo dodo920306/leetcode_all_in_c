@@ -31,7 +31,7 @@ int *newInterval, int newIntervalSize, int *returnSize, int **returnColumnSizes)
         return NULL;
     }
 
-    for ((*returnSize) = 0; i < intervalsSize; i++) {
+    for ((*returnSize) = 0; i < intervalsSize; i++)
         if ((intervals[i][0] < newInterval[0] ? newInterval[0] : intervals[i][0]) <= (intervals[i][1] < newInterval[1] ? intervals[i][1] : newInterval[1])) {
             /**
              * MaxStart < MinEnd => Overlap => Merge
@@ -45,7 +45,7 @@ int *newInterval, int newIntervalSize, int *returnSize, int **returnColumnSizes)
             /* No overlap */
             insertAPairAtTheEnd(res, returnSize, intervals[i], *returnColumnSizes);
         else    break;  /* No overlap, but behind the new interval, so we insert the new interval first. */
-    }
+
     /* insert the new interval */
     insertAPairAtTheEnd(res, returnSize, newInterval, *returnColumnSizes);
     while (i < intervalsSize)
