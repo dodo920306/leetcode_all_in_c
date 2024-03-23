@@ -31,9 +31,9 @@ bool isPalindrome(struct ListNode *head)
             fast = fast->next->next;
         }
         /* odd nodes */
-        if (fast)
-            slow = slow->next;
+        if (fast)   slow = slow->next;
         temp->next = NULL;
+        /* modifing the latter half of the list is OK since we don't care about their original order. */
         temp = reverseList(slow);
 
         while (head) {
