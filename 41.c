@@ -9,12 +9,19 @@ int firstMissingPositive(int *nums, int numsSize)
     bool hasOne = false;
     for (int i = 0; i < numsSize; i++) {
         if (nums[i] == 1)   hasOne = true;
+        /* Make all numbers belong to [1, numsSize]. */
         else if (nums[i] <= 0 || nums[i] > numsSize) nums[i] = 1;
     }
+    /* prevent misjudge i.e. there is no 1 in the original array */
     if (!hasOne)    return 1;
 
     for (int i = 0, index; i < numsSize; i++) {
+        /**
+         * index belongs to [0, numsSize - 1]
+         * use abs() to prevent the number has been marked before
+         */
         index = abs(nums[i]) % numsSize;
+        /* make nums[index] negative */
         nums[index] = -abs(nums[index]);
     }
 
