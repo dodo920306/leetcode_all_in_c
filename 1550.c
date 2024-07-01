@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+bool threeConsecutiveOdds(int *arr, int arrSize);
+
 bool threeConsecutiveOdds(int *arr, int arrSize)
 {
     if (arrSize > 2)

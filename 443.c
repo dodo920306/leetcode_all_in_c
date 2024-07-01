@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+int compress(char *chars, int charsSize);
+
 int compress(char *chars, int charsSize)
 {
     char buffer[5];

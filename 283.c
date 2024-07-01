@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+void moveZeroes(int *nums, int numsSize);
+
 void moveZeroes(int *nums, int numsSize)
 {
     int nonzero = 0;
