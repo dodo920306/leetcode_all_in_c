@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+double findMaxAverage(int *nums, int numsSize, int k);
+
 double findMaxAverage(int *nums, int numsSize, int k)
 {
     double res, sum = 0;
