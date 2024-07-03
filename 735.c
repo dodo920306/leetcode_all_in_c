@@ -11,6 +11,7 @@ int *asteroidCollision(int *asteroids, int asteroidsSize, int *returnSize)
 {
     *returnSize = 1;
     for (int i = 1; i < asteroidsSize; i++) {
+        /* It's not possible for asteroids[i] to be 0. */
         while ((*returnSize) && asteroids[(*returnSize) - 1] > 0 && asteroids[i] < 0) {
             /* Collisions only happpen when asteroids[(*returnSize) - 1] and asteroids[i] approach each other. */
             if (asteroids[(*returnSize) - 1] < -asteroids[i])
@@ -35,6 +36,10 @@ int *asteroidCollision(int *asteroids, int asteroidsSize, int *returnSize)
 int main()
 {
     int *asteroids, returnSize, *res;
+    /**
+     * To allow callers to call free() while performing the algoithm in place,
+     * we malloc the input array here like Leetcode did.
+     */
     if (!(asteroids = (int *)malloc(3 * sizeof(int))))
         return errno;
     asteroids[0] = 5;
@@ -48,6 +53,6 @@ int main()
         printf("%d", res[i]);
     }
     printf("]\n");
-    free(asteroids);
+    free(res);
     return 0;
 }
