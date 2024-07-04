@@ -34,10 +34,12 @@ int main()
     struct ListNode node7 = {.val = 6, .next = NULL}, node6 = {.val = 2, .next = &node7}, node5 = {.val = 1, .next = &node6}, node4 = {.val = 7, .next = &node5}, node3 = {.val = 4, .next = &node4}, node2 = {.val = 3, .next = &node3}, head = {.val = 1, .next = &node2}, *res;
 
     res = deleteMiddle(&head);
-    while (res)
-    {
-        printf("%d ", res->val);
+    printf("[%d", res->val);
+    res = res->next;
+    while (res) {
+        printf(", %d", res->val);
         res = res->next;
     }
+    printf("]\n");
     return 0;
 }
