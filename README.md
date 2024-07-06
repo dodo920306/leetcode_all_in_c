@@ -23,7 +23,7 @@ Second, another repository must also be included since sadly I can't make every 
 $ git clone https://github.com/troydhanson/uthash.git
 ```
 
-And, This is totally legal since even [Leetcode itself](https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages) recommend it.
+And, This is totally legal since even [Leetcode itself](https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages) recommends it.
 
 ## Usage
 
