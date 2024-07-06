@@ -8,6 +8,23 @@ Any PR about the existing solutions is welcomed, while that for the nonexistent 
 
 * A C compiler
 
+## Installation
+
+First, clone the repository.
+
+```bash
+$ git clone https://github.com/dodo920306/leetcode_all_in_c.git
+$ cd leetcode_all_in_c
+```
+
+Second, another repository must also be included since sadly I can't make every data structure from scratch (I wish I could).
+
+```bash
+$ git clone https://github.com/troydhanson/uthash.git
+```
+
+And, This is totally legal since even [Leetcode itself](https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages) recommend it.
+
 ## Usage
 
 Use your C compiler on your computer to compile each solution and run it, simple as that.
