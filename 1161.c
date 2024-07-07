@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <limits.h>
 
 struct TreeNode {
     int val;
@@ -20,6 +21,7 @@ bool isEmpty(struct Queue *q);
 void push(struct Queue *q, struct TreeNode *k);
 struct TreeNode *pop(struct Queue *q);
 void qFree(struct Queue *q);
+int maxLevelSum(struct TreeNode *root);
 
 struct Queue *create(int size)
 {
@@ -42,12 +44,12 @@ bool isEmpty(struct Queue *q)
 
 void push(struct Queue *q, struct TreeNode *k)
 {
-    q->array[q->end++] = k;
+    if (k)  q->array[q->end++] = k;
 }
 
 struct TreeNode *pop(struct Queue *q)
 {
-    return q->array[q->start++];
+    return isEmpty(q) ? NULL : q->array[q->start++];
 }
 
 void qFree(struct Queue *q)
@@ -56,39 +58,34 @@ void qFree(struct Queue *q)
     free(q);
 }
 
-/**
- * Note: The returned array must be malloced, assume caller calls free().
- */
-int *rightSideView(struct TreeNode *root, int *returnSize) {
+int maxLevelSum(struct TreeNode *root)
+{
     struct Queue *q;
-    struct TreeNode *t = NULL;
-    int *res = NULL;
-    *returnSize = 0;
-    if (root && (q = create(128)) && (res = (int *)malloc(32 * sizeof(int)))) {
-        push(q, root);
-        while (!isEmpty(q)) {
-            for (int i = 0, loop = size(q); i < loop; i++) {
-                t = pop(q);
-                if (t->left)
-                    push(q, t->left);
-                if (t->right)
-                    push(q, t->right);
-            }
-            res[(*returnSize)++] = t->val;
+    struct TreeNode *node;
+    int res = 1;
+    if (!(q = create(10000)))
+        return -1;
+    push(q, root);
+    for (int level = 1, maxSum = INT_MIN, sum; !isEmpty(q); level++) {
+        sum = 0;
+        for (int i = 0, loop = size(q); i < loop; i++) {
+            node = pop(q);
+            sum += node->val;
+            push(q, node->left);
+            push(q, node->right);
         }
-        qFree(q);
+        if (maxSum < sum) {
+            maxSum = sum;
+            res = level;
+        }
     }
+    qFree(q);
     return res;
 }
 
 int main()
 {
-    struct TreeNode node4 = {4, NULL, NULL}, node3 = {5, NULL, NULL}, node2 = {3, NULL, &node4}, node1 = {2, NULL, &node3}, head = {1, &node1, &node2};
-    int returnSize, *res = rightSideView(&head, &returnSize);
-    printf("[%d", *res);
-    for (int i = 1; i < returnSize; i++)
-        printf(", %d", res[i]);
-    printf("]\n");
-    free(res);
+    struct TreeNode node4 = {-8, NULL, NULL}, node3 = {7, NULL, NULL}, node2 = {0, NULL, NULL}, node1 = {7, &node3, &node4}, head = {1, &node1, &node2};
+    printf("%d\n", maxLevelSum(&head));
     return 0;
 }
