@@ -16,7 +16,7 @@ int findTheWinner(int n, int k)
      * To do this, we have to minus 1 from the previous result first.
      * Then add it back after the modulo.
      */
-    return n - 1 ? (findTheWinner(n - 1, k) + k - 1) % n + 1 : 1;
+    return (n - 1 ? (findTheWinner(n - 1, k) + k - 1) % n : 0) + 1;
 }
 
 int main()
