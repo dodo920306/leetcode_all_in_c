@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "uthash/include/uthash.h"
 
 struct mapIntInt {
