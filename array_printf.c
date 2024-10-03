@@ -14,3 +14,16 @@ void printIntArray(int *arr, int arrSize)
     else
         printf("]\n");
 }
+
+void printStrArray(char **arr, int arrSize)
+{
+    arrSize--;
+    printf("[");
+    for (int i = 0; i < arrSize; i++) {
+        printf("%s, ", arr[i]);
+    }
+    if (arrSize >= 0)
+        printf("%s]\n", arr[arrSize]);
+    else
+        printf("]\n");
+}
