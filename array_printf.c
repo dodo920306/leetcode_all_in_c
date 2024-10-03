@@ -9,5 +9,8 @@ void printIntArray(int *arr, int arrSize)
     for (int i = 0; i < arrSize; i++) {
         printf("%d, ", arr[i]);
     }
-    printf("%d]\n", arr[arrSize]);
+    if (arrSize >= 0)
+        printf("%d]\n", arr[arrSize]);
+    else
+        printf("]\n");
 }
