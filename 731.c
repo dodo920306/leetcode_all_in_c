@@ -110,9 +110,10 @@ void myCalendarTwoFree(MyCalendarTwo *obj)
 
 int main()
 {
-    MyCalendarTwo *myCalendarTwo;
-    printf("[null");
-    myCalendarTwo = myCalendarTwoCreate();
+    MyCalendarTwo *myCalendarTwo = myCalendarTwoCreate();
+    if (!myCalendarTwo) return -1;
+
+    printf("[null");    
     printf(", %s", myCalendarTwoBook(myCalendarTwo, 10, 20) ? "true" : "false");
     printf(", %s", myCalendarTwoBook(myCalendarTwo, 50, 60) ? "true" : "false");
     printf(", %s", myCalendarTwoBook(myCalendarTwo, 10, 40) ? "true" : "false");
