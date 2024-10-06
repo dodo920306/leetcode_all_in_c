@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-int intConverter(int k);
-int charConverter(char c);
-int stringConverter(char *s);
-int getLucky(char *s, int k);
+int intConverter(int);
+int charConverter(char);
+int stringConverter(char *);
+int getLucky(char *, int);
 
 int intConverter(int k)
 {

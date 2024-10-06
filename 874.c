@@ -23,14 +23,14 @@ struct robot {
     struct coordinate coordinate;
 };
 
-int square(int k);
-int squaredDistance(struct coordinate self);
-void rotate(struct robot *self, bool isLeft);
-bool move(struct robot *self, struct coordinateSet *set);
-void insertCoordinateSet(struct coordinateSet **set, int x, int y);
+int square(int);
+int squaredDistance(struct coordinate);
+void rotate(struct robot *, bool);
+bool move(struct robot *, struct coordinateSet *);
+void insertCoordinateSet(struct coordinateSet **, int, int);
 struct robot *newRobot();
-void freeCoordinateSet(struct coordinateSet *set);
-int robotSim(int *commands, int commandsSize, int **obstacles, int obstaclesSize, int *obstaclesColSize);
+void freeCoordinateSet(struct coordinateSet *);
+int robotSim(int *, int, int **, int, int *);
 
 int square(int k)
 {
