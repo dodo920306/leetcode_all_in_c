@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-void printIntArray(int *arr, int arrSize);
+void printIntArray(int *, int);
+void printStrArray(char **, int);
 
 void printIntArray(int *arr, int arrSize)
 {
