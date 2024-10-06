@@ -6,6 +6,10 @@ struct mapIntInt {
     UT_hash_handle hh;
 };
 
+int cmp(const struct mapIntInt *, const struct mapIntInt *);
+int *frequencySort(int *, int, int *);
+void printIntArray(int *, int);
+
 int cmp(const struct mapIntInt *a, const struct mapIntInt *b)
 {
     if (a->val == b->val)
