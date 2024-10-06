@@ -26,6 +26,11 @@ enum direction {
     WEST
 };
 
+void rotateRight(enum direction *);
+void move(int **, int *, int *, enum direction *);
+int **spiralMatrix(int, int, struct ListNode *, int *, int **);
+void printIntArray(int *, int);
+
 void rotateRight(enum direction *direction)
 {
     (*direction) = ((*direction) + 1) % 4;
