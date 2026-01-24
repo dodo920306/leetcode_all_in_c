@@ -8,11 +8,8 @@ int main()
     int point1[] = {1, 1};
     int point2[] = {3, 4};
     int point3[] = {-1, 0};
-    int** points = (int**)malloc(3 * sizeof(int*));
+    int* points[] = {point1, point2, point3};
     int pointsColSize[3] = {2, 2, 2};
-    points[0] = point1;
-    points[1] = point2;
-    points[2] = point3;
     printf("%d\n", minTimeToVisitAllPoints(points, 3, pointsColSize));
     return 0;
 }
