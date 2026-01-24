@@ -73,7 +73,8 @@ int* replaceNonCoprimes(int* nums, int numsSize, int* returnSize)
     return nums;
 }
 
-int getGCD(int a, int b) {
+int getGCD(int a, int b)
+{
     return a ? getGCD(b % a, a) : b;
 }
 
