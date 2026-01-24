@@ -1,3 +1,4 @@
 *.out
 uthash
 .vscode
+uthash.h
