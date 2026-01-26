@@ -11,19 +11,19 @@ int main() {
     int** res = minimumAbsDifference(arr, 4, &returnSize, &returnColumnSizes);
     printf("[\n");
     for (int i = 0; i < returnSize; i++) {
-	printf("    [");
-	for (int j = 0; j < returnColumnSizes[i]; j++) {
-	    printf("%d", res[i][j]);
-	    if (j + 1 != returnColumnSizes[i]) {
-		printf(", ");
-	    }
-	}
-	free(res[i]);
-	printf("]");
-	if (i + 1 != returnSize) {
-	    printf(",");
-	}
-	printf("\n");
+        printf("    [");
+        for (int j = 0; j < returnColumnSizes[i]; j++) {
+            printf("%d", res[i][j]);
+            if (j + 1 != returnColumnSizes[i]) {
+                printf(", ");
+            }
+        }
+        free(res[i]);
+        printf("]");
+        if (i + 1 != returnSize) {
+            printf(",");
+        }
+        printf("\n");
     }
     free(returnColumnSizes);
     free(res);
